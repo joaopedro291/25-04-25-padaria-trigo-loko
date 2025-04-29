@@ -11,11 +11,11 @@ app.use(express.json());
 app.use(express.static('.'));
 
 const pool = mysql.createPool({
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: process.env.DB_NAME
+    host: 'mysql-2902d848-emaily-b78c.k.aivencloud.com',
+    port: '21309',
+    user: 'avnadmin',
+    password: 'AVNS_QmU9SmCyUHRgzdjJNhg',
+    database: 'defaultdb'
 });
 
 

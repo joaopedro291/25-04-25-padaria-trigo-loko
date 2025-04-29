@@ -4,7 +4,7 @@ import mysql from 'mysql2/promise';
 import cors from 'cors';
 
 const app = express();
-const PORT = 3000;
+const PORT = 80;
 
 app.use(cors());
 app.use(express.json());
@@ -71,7 +71,7 @@ app.post('/api/mysql', async (req, res) => {
                     addAnd = " and ";
                 }
 
-                var strSql = "select * from `padaria_trigo_loko`.`tbl_login` where" + 
+                var strSql = "select * from `padaria_trigo_loko`.`tbl_cadastro` where" + 
                     addNome + addAnd + addLogin + ";";
                 var [rows, fields] = await pool.query(strSql);
                 if (rows.length > 0) {
@@ -87,7 +87,7 @@ app.post('/api/mysql', async (req, res) => {
                 }
                 break;
                 case 'atualizacao':
-                    var strSql = "select * from `padaria_trigo_loko`.`tbl_login`;";
+                    var strSql = "select * from `padaria_trigo_loko`.`tbl_cadastro`;";
                     var [rows, fields] = await pool.query(strSql);
                     if (rows.length > 0) {
                         res.json({ 
@@ -95,7 +95,7 @@ app.post('/api/mysql', async (req, res) => {
                             rows: rows
                         });
                     } else {
-                        throw ("Não há registro algum na tabela tbl_login!");
+                        throw ("Não há registro algum na tabela tbl_cadastro!");
                     }
                     break;
                 case 'atualizar':
@@ -129,7 +129,7 @@ app.post('/api/mysql', async (req, res) => {
                         addSenha = " , " + addSenha;
                     }
     
-                    var strSql = "update `padaria_trigo_loko`.`tbl_login` set " + 
+                    var strSql = "update `padaria_trigo_loko`.`tbl_cadastro` set " + 
                         addNome + addLogin + addSenha + 
                         " where `id` = " + addId + ";";
                     var [rows, fields] = await pool.query(strSql);
@@ -138,7 +138,7 @@ app.post('/api/mysql', async (req, res) => {
                             message: 'Registro atualizado com sucesso!'
                         });
                     } else {
-                        throw ("Não foi possível atualizar o id: " + addId + " na tabela tbl_login!");
+                        throw ("Não foi possível atualizar o id: " + addId + " na tabela tbl_cadastro!");
                     }
                     break;
             default:
